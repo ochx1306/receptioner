@@ -28,5 +28,21 @@ export default defineConfig(
       ...eslintPluginReactRefresh.configs.vite.rules
     }
   },
+  {
+    files: ['src/renderer/src/app/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/*'],
+              message: 'app内から実装レイヤー(@/)への逆依存は禁止されています。'
+            }
+          ]
+        }
+      ]
+    }
+  },
   eslintConfigPrettier
 )
