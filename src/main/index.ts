@@ -1,26 +1,25 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import path from 'path'
-import { join } from 'path'
+import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import Database from 'better-sqlite3'
 import { registerCrudIpc } from './app/lib/ipc-crud'
 import { initRoleTable, roleHandlers } from './features/role/role-db'
+let db: Database.Database | null = null
 
-const dbPath = path.join(app.getPath('userData'), 'database.sqlite')
-const db = new Database(dbPath)
+const setupFeatures = (database: Database.Database) => {
+  const features = [{ name: 'role', initTable: initRoleTable, handlers: roleHandlers }]
 
-export function setupIpc(): void {
-  initRoleTable(db)
-
-  registerCrudIpc('role', db, roleHandlers)
+  features.forEach((feature) => {
+    feature.initTable(database)
+    registerCrudIpc(feature.name, database, feature.handlers)
+  })
 }
 
 function createWindow(): void {
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1024,
+    height: 768,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -31,6 +30,7 @@ function createWindow(): void {
   })
 
   mainWindow.on('ready-to-show', () => {
+    mainWindow.maximize()
     mainWindow.show()
   })
 
@@ -53,9 +53,12 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  ipcMain.on('ping', () => console.log('pong'))
+  const dbPath = path.join(app.getPath('userData'), 'database.sqlite')
+  db = new Database(dbPath)
 
-  setupIpc()
+  setupFeatures(db)
+
+  ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
 
@@ -65,6 +68,9 @@ app.whenReady().then(() => {
 })
 
 app.on('window-all-closed', () => {
+  if (db) {
+    db.close()
+  }
   if (process.platform !== 'darwin') {
     app.quit()
   }
