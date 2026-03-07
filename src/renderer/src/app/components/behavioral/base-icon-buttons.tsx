@@ -1,5 +1,5 @@
 import { BaseIconButton, type BaseIconButtonProps } from '../base/BaseIconButton'
-import { CreateIcon, UpdateIcon, DeleteIcon } from '../base/base-icons'
+import { CreateIcon, UpdateIcon, DeleteIcon, SaveIcon } from '../base/base-icons'
 
 type SemanticIconButtonProps = Omit<BaseIconButtonProps, 'icon' | 'label'> & {
   label?: string
@@ -17,4 +17,14 @@ const DeleteIconButton = (props: SemanticIconButtonProps) => {
   return <BaseIconButton icon={DeleteIcon} label="削除" {...props} />
 }
 
-export { CreateIconButton, UpdateIconButton, DeleteIconButton, type SemanticIconButtonProps }
+const SaveIconButton = (props: SemanticIconButtonProps) => {
+  return <BaseIconButton icon={SaveIcon} label="保存" {...props} />
+}
+
+export {
+  CreateIconButton,
+  UpdateIconButton,
+  DeleteIconButton,
+  SaveIconButton,
+  type SemanticIconButtonProps
+}
