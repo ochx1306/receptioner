@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { TodoApp } from '@renderer/components/ToDoApp'
+import { TodoApp } from '@/components/ToDoApp'
 
 export const Route = createFileRoute('/')({
   component: Index
