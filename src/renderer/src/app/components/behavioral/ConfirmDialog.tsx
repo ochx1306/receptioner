@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button } from '@app/components/ui'
+import { Button } from '@app/components/ui/button'
 import { BaseDialog } from '../base/BaseDialog'
 
 interface ConfirmDialogProps {

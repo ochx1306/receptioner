@@ -5,7 +5,7 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarTrigger
-} from '@app/components/ui'
+} from '@app/components/ui/sidebar'
 import { useRightSidebarStore } from './useRightSidebarStore'
 
 interface AppLayoutProps {

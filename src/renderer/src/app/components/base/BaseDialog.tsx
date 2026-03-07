@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from '@app/components/ui'
+} from '@app/components/ui/dialog'
 import { MAX_WIDTH_CLASSES, type MaxWidthVariant } from '@/app/lib/ui'
 
 interface BaseDialogProps {
