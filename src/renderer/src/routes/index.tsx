@@ -1,14 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { TodoApp } from '@/components/ToDoApp'
+
+import type { NavigateOptions } from '@tanstack/react-router'
+import { ConfirmNavButton } from '@/app/framework/nav/ConfirmNavButton'
 
 export const Route = createFileRoute('/')({
   component: Index
 })
 
 function Index() {
+  const navigateOptions: NavigateOptions = { to: '/about' }
+
   return (
     <div className="p-2">
-      <TodoApp />
+      <ConfirmNavButton navigateOptions={navigateOptions} requireConfirm={false}>
+        go to about
+      </ConfirmNavButton>
     </div>
   )
 }
