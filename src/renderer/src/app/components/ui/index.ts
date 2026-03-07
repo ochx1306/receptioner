@@ -12,6 +12,32 @@ import {
   DialogTitle,
   DialogTrigger
 } from './dialog'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar
+} from './sidebar'
 
 export {
   Input,
@@ -25,5 +51,29 @@ export {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar
 }
