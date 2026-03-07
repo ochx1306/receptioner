@@ -1,11 +1,18 @@
 import { ElectronAPI } from '@electron-toolkit/preload'
+import type { Role } from '@shared/app/core/role'
+
+export interface CrudApi<T> {
+  getAll: () => Promise<T[]>
+  insert: (item: T) => Promise<{ success: boolean }>
+  update: (item: T) => Promise<{ success: boolean }>
+  delete: (id: string) => Promise<{ success: boolean }>
+}
 
 declare global {
   interface Window {
     electron: ElectronAPI
     api: {
-      getTodos: () => Promise<{ id: number; title: string }[]>
-      addTodo: (title: string) => Promise<{ id: number; title: string }>
+      role: CrudApi<Role>
     }
   }
 }

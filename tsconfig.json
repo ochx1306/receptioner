@@ -4,6 +4,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@shared/*": [
+        "src/shared/*"
+      ],
       "@/*": [
         "src/renderer/src/*"
       ],

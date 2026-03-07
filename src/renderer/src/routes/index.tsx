@@ -8,12 +8,12 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
-  const navigateOptions: NavigateOptions = { to: '/about' }
+  const navigateOptions: NavigateOptions = { to: '/roles' }
 
   return (
     <div className="p-2">
       <ConfirmNavButton navigateOptions={navigateOptions} requireConfirm={false}>
-        go to about
+        go to roles
       </ConfirmNavButton>
     </div>
   )

@@ -4,27 +4,16 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import Database from 'better-sqlite3'
+import { registerCrudIpc } from './app/lib/ipc-crud'
+import { initRoleTable, roleHandlers } from './features/role/role-db'
 
 const dbPath = path.join(app.getPath('userData'), 'database.sqlite')
 const db = new Database(dbPath)
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS todos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL
-  )
-`)
-
 export function setupIpc(): void {
-  ipcMain.handle('get-todos', () => {
-    return db.prepare('SELECT * FROM todos').all()
-  })
+  initRoleTable(db)
 
-  ipcMain.handle('add-todo', (_, title: string) => {
-    const stmt = db.prepare('INSERT INTO todos (title) VALUES (?)')
-    const info = stmt.run(title)
-    return { id: info.lastInsertRowid, title }
-  })
+  registerCrudIpc('role', db, roleHandlers)
 }
 
 function createWindow(): void {

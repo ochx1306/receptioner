@@ -5,11 +5,24 @@ import tailwindcss from '@tailwindcss/vite'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 export default defineConfig({
-  main: {},
-  preload: {},
+  main: {
+    resolve: {
+      alias: {
+        '@shared': resolve('src/shared')
+      }
+    }
+  },
+  preload: {
+    resolve: {
+      alias: {
+        '@shared': resolve('src/shared')
+      }
+    }
+  },
   renderer: {
     resolve: {
       alias: {
+        '@shared': resolve('src/shared'),
         '@': resolve('src/renderer/src'),
         '@app': resolve('src/renderer/src/app')
       }

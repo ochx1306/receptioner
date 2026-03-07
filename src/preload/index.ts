@@ -1,10 +1,15 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
-// Custom APIs for renderer
+const createCrudApi = (featureName: string) => ({
+  getAll: () => ipcRenderer.invoke(`${featureName}:getAll`),
+  insert: (item: any) => ipcRenderer.invoke(`${featureName}:insert`, item),
+  update: (item: any) => ipcRenderer.invoke(`${featureName}:update`, item),
+  delete: (id: string) => ipcRenderer.invoke(`${featureName}:delete`, id)
+})
+
 const api = {
-  getTodos: () => ipcRenderer.invoke('get-todos'),
-  addTodo: (title: string) => ipcRenderer.invoke('add-todo', title)
+  role: createCrudApi('role')
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
