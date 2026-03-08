@@ -1,5 +1,5 @@
 import { ElectronAPI } from '@electron-toolkit/preload'
-import type { Role } from '@shared/app/core/role'
+import type { Role } from '@shared/features/role/role'
 
 export interface CrudApi<T> {
   getAll: () => Promise<T[]>

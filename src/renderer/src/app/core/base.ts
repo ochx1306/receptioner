@@ -3,7 +3,15 @@ import {
   type BaseId,
   baseEntitySchema,
   type BaseEntity,
-  generateId
-} from 'src/shared/app/core/base'
+  generateId,
+  generateTimestamp
+} from '@shared/app/core/base'
 
-export { baseIdSchema, type BaseId, baseEntitySchema, type BaseEntity, generateId }
+export {
+  baseIdSchema,
+  type BaseId,
+  baseEntitySchema,
+  type BaseEntity,
+  generateId,
+  generateTimestamp
+}

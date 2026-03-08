@@ -1,6 +1,6 @@
 import type { Database } from 'better-sqlite3'
 import { createCrudHandlers } from '../../app/lib/db-crud'
-import type { Role } from '@shared/app/core/role'
+import type { Role } from '@shared/features/role/role'
 
 export const ROLE_TABLE = 'roles'
 

@@ -1,7 +1,7 @@
 import { z } from 'zod'
-import { baseEntitySchema } from './base'
+import { baseEntitySchema } from '../../app/core/base'
 
-const roleSchema = baseEntitySchema.extend({
+export const roleSchema = baseEntitySchema.extend({
   name: z.string().min(1, '役職名を入力してください')
 })
 

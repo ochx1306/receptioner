@@ -15,3 +15,5 @@ export type BaseEntity = z.infer<typeof baseEntitySchema>
 export const generateId = <T extends string>(): T => {
   return crypto.randomUUID() as T
 }
+
+export const generateTimestamp = (): string => new Date().toISOString()
