@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron'
 import type { Database } from 'better-sqlite3'
 import { createCrudHandlers } from './db-crud'
-import type { BaseEntity, BaseId } from '@shared/app/core/base'
+import type { BaseEntity, BaseId } from '@shared/app/lib/base'
 
 type DbHandlers<T> = ReturnType<typeof createCrudHandlers<T & BaseEntity>>
 

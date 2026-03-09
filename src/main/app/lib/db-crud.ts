@@ -1,5 +1,5 @@
 import type { Database } from 'better-sqlite3'
-import type { BaseEntity, BaseId } from '@shared/app/core/base'
+import type { BaseEntity, BaseId } from '@shared/app/lib/base'
 
 /**
  * 型安全なCRUD関数群を一括生成するファクトリ

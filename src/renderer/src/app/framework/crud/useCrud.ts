@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import type { BaseEntity } from '@shared/app/core/base'
+import type { BaseEntity } from '@shared/app/lib/base'
 
 interface CrudApi<T> {
   getAll: () => Promise<T[]>

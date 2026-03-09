@@ -5,7 +5,7 @@ import {
   type BaseEntity,
   generateId,
   generateTimestamp
-} from '@shared/app/core/base'
+} from '@shared/app/lib/base'
 
 export {
   baseIdSchema,
