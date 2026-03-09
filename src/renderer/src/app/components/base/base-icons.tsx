@@ -1,7 +1,7 @@
 import { forwardRef, type ForwardRefExoticComponent, type RefAttributes } from 'react'
 import { PlusIcon, PencilIcon, TrashIcon, Save, type LucideProps } from 'lucide-react'
 
-type SemanticIcon = ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>>
+export type SemanticIcon = ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>>
 
 const CreateIcon: SemanticIcon = forwardRef((props, ref) => <PlusIcon {...props} ref={ref} />)
 
