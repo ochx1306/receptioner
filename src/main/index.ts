@@ -3,8 +3,10 @@ import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import Database from 'better-sqlite3'
-import { registerCrudIpc } from './app/lib/ipc-crud'
+import { registerCrudIpc } from './app/lib/crud-ipc'
+import { registerFileIpc } from './app/lib/file-ipc'
 import { initRoleTable, roleHandlers } from './features/role/role-db'
+
 let db: Database.Database | null = null
 
 const setupFeatures = (database: Database.Database) => {
@@ -57,6 +59,8 @@ app.whenReady().then(() => {
   db = new Database(dbPath)
 
   setupFeatures(db)
+
+  registerFileIpc()
 
   ipcMain.on('ping', () => console.log('pong'))
 

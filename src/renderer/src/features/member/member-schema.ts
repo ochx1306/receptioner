@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { baseIdSchema, baseEntitySchema } from '@app/core/base'
+import { baseIdSchema, baseEntitySchema } from '@/app/lib/base'
 import { roleIdSchema } from '../role/role-schema'
 
 export const memberIdSchema = baseIdSchema.brand<'MemberId'>()

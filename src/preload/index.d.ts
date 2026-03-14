@@ -13,6 +13,12 @@ declare global {
     electron: ElectronAPI
     api: {
       role: CrudApi<Role>
+      file: {
+        saveCsv: (
+          defaultPath: string,
+          content: string
+        ) => Promise<{ success: boolean; filePath?: string }>
+      }
     }
   }
 }

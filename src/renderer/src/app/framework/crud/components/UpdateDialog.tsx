@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react'
 import { UpdateIconButton } from '@app/components/behavioral/base-icon-buttons'
 import { BaseDialog } from '@app/components/base/BaseDialog'
-import type { BaseEntity } from '@app/core/base'
+import type { BaseEntity } from '@/app/lib/base'
 import type { CrudFormProps } from '../useCrudForm'
 
 interface UpdateDialogProps<T extends BaseEntity> {

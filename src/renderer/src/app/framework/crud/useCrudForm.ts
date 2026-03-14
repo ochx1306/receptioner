@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { useForm, type UseFormProps, type FieldValues } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { generateId, generateTimestamp, type BaseEntity } from '@app/core/base'
+import { generateId, generateTimestamp, type BaseEntity } from '@/app/lib/base'
 
 type CrudMode = 'create' | 'update'
 

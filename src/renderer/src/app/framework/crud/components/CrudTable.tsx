@@ -1,12 +1,12 @@
 import { useMemo, type ComponentType } from 'react'
-// import { BaseDataTable } from '@/components/data-table'
-// import type { ColumnDef } from '@/components/data-table/column'
-import { DataTable } from '@/app/components/behavioral/DataTable'
 import type { ColumnDef } from '@tanstack/react-table'
-import type { BaseEntity } from '@app/core/base'
+import type { BaseEntity } from '@/app/lib/base'
+import { Checkbox } from '@/app/components/ui/checkbox'
+import { DataTable } from '@/app/components/behavioral/DataTable'
 import type { CrudFormProps } from '../useCrudForm'
 import { CreateDialog } from './CreateDialog'
 import { UpdateDialog } from './UpdateDialog'
+import { CopyDialog } from './CopyDialog'
 import { DeleteButton } from './DeleteButton'
 
 type BaseCrudTableProps<T extends BaseEntity> = {
@@ -21,11 +21,13 @@ type FormRequirement<T extends BaseEntity> =
   | {
       allowCreate: false
       allowUpdate: false
+      allowCopy: false
       CrudForm?: never
     }
   | {
       allowCreate?: boolean
       allowUpdate?: boolean
+      allowCopy?: boolean
       CrudForm: ComponentType<CrudFormProps<T>>
     }
 
@@ -50,6 +52,7 @@ export const CrudTable = <T extends BaseEntity>({
   columns,
   allowCreate = true,
   allowUpdate = true,
+  allowCopy = true,
   allowDelete = true,
   CrudForm,
   deleteItem,
@@ -57,15 +60,40 @@ export const CrudTable = <T extends BaseEntity>({
 }: CrudTableProps<T>) => {
   const tableColumns = useMemo<ColumnDef<T>[]>(() => {
     return [
+      {
+        id: 'select',
+        header: ({ table }) => (
+          <Checkbox
+            checked={
+              table.getIsAllPageRowsSelected() ||
+              (table.getIsSomePageRowsSelected() && 'indeterminate')
+            }
+            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+            aria-label="すべての行を選択"
+          />
+        ),
+        cell: ({ row }) => (
+          <Checkbox
+            checked={row.getIsSelected()}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
+            aria-label="行を選択"
+          />
+        ),
+        meta: { excludeFromExport: true },
+        enableSorting: false,
+        enableHiding: false
+      },
       ...columns,
       {
         id: 'actions',
         header: '操作',
+        meta: { excludeFromExport: true },
         cell: ({ row }) => {
           const item = row.original
           return (
             <div className="flex gap-2">
               {PrefixActions && <PrefixActions item={item} />}
+              {allowCopy && CrudForm && <CopyDialog item={item} CrudForm={CrudForm} />}
               {allowUpdate && CrudForm && (
                 <UpdateDialog featureName={featureName} item={item} CrudForm={CrudForm} />
               )}
