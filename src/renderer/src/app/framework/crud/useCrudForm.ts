@@ -46,9 +46,11 @@ export const useCrudForm = <TFormValues extends FieldValues, TEntity extends Bas
 
       if (crudMode === 'create') {
         if (!createItem) throw new Error('createItem is not provided')
+
         await createItem({
           ...baseData,
-          id: entityId || generateId(),
+          // id: entityId || generateId<TEntity['id']>(),
+          id: generateId<TEntity['id']>(),
           createdAt: now,
           updatedAt: now
         } as unknown as TEntity)

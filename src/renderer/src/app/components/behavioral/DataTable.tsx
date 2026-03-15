@@ -1,7 +1,4 @@
-'use client'
-
-import { useState } from 'react'
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import { flexRender, type Table as TanStackTable } from '@tanstack/react-table'
 import {
   Table,
   TableBody,
@@ -11,24 +8,11 @@ import {
   TableRow
 } from '@app/components/ui/table'
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+interface DataTableProps<TData> {
+  table: TanStackTable<TData>
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = useState({})
-
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    onRowSelectionChange: setRowSelection,
-    state: {
-      rowSelection
-    }
-  })
-
+export const DataTable = <TData,>({ table }: DataTableProps<TData>) => {
   return (
     <div className="overflow-hidden rounded-md border">
       <Table>
@@ -60,7 +44,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
                 データがありません
               </TableCell>
             </TableRow>

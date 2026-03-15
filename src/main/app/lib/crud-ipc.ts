@@ -28,4 +28,9 @@ export const registerCrudIpc = <T extends BaseEntity>(
     dbHandlers.delete(db, id)
     return { success: true }
   })
+
+  ipcMain.handle(`${featureName}:bulkDelete`, (_event, ids: BaseId[]) => {
+    dbHandlers.bulkDelete(db, ids)
+    return { success: true }
+  })
 }

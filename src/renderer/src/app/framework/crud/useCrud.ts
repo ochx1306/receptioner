@@ -6,6 +6,7 @@ interface CrudApi<T> {
   insert: (item: T) => Promise<{ success: boolean }>
   update: (item: T) => Promise<{ success: boolean }>
   delete: (id: string) => Promise<{ success: boolean }>
+  bulkDelete: (ids: string[]) => Promise<{ success: boolean }>
 }
 
 /**
@@ -43,6 +44,11 @@ export const useCrud = <T extends BaseEntity>(queryKeyName: string, api: CrudApi
     onSuccess: () => queryClient.invalidateQueries({ queryKey })
   })
 
+  const bulkDeleteMutation = useMutation({
+    mutationFn: (ids: string[]) => api.bulkDelete(ids),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey })
+  })
+
   return {
     items,
     isLoading,
@@ -50,6 +56,11 @@ export const useCrud = <T extends BaseEntity>(queryKeyName: string, api: CrudApi
     insertItem: insertMutation.mutateAsync,
     updateItem: updateMutation.mutateAsync,
     deleteItem: deleteMutation.mutateAsync,
-    isMutating: insertMutation.isPending || updateMutation.isPending || deleteMutation.isPending
+    bulkDeleteItems: bulkDeleteMutation.mutateAsync,
+    isMutating:
+      insertMutation.isPending ||
+      updateMutation.isPending ||
+      deleteMutation.isPending ||
+      bulkDeleteMutation.isPending
   }
 }

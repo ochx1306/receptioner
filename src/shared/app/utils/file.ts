@@ -1,11 +1,5 @@
-export const labelCopiedSuffix = (
-  name: string,
-  names?: string[],
-  suffix: string = ' - コピー'
-): string => {
-  const baseSuffix = suffix
-
-  const escapedSuffix = baseSuffix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+export const appendUniqueSuffix = (name: string, suffix: string, names?: string[]): string => {
+  const escapedSuffix = suffix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const regex = new RegExp(`^(.*?)(?:${escapedSuffix}(?:\\s\\(\\d+\\))?)?$`)
   const match = name.match(regex)
 
@@ -15,7 +9,7 @@ export const labelCopiedSuffix = (
 
   let count = 0
   const generateSuffix = () => {
-    return count === 0 ? baseSuffix : `${baseSuffix} (${count + 1})`
+    return count === 0 ? suffix : `${suffix} (${count + 1})`
   }
 
   let newName = `${baseName}${generateSuffix()}`

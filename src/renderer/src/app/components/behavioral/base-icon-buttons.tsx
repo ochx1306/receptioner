@@ -25,7 +25,7 @@ const CopyIconButton = (props: SemanticIconButtonProps) => {
 }
 
 const DeleteIconButton = (props: SemanticIconButtonProps) => {
-  return <BaseIconButton icon={DeleteIcon} label="削除" {...props} />
+  return <BaseIconButton icon={DeleteIcon} label="削除" variant="destructive" {...props} />
 }
 
 const SaveIconButton = (props: SemanticIconButtonProps) => {

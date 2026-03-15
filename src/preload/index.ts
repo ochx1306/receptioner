@@ -5,7 +5,8 @@ const createCrudApi = (featureName: string) => ({
   getAll: () => ipcRenderer.invoke(`${featureName}:getAll`),
   insert: (item: any) => ipcRenderer.invoke(`${featureName}:insert`, item),
   update: (item: any) => ipcRenderer.invoke(`${featureName}:update`, item),
-  delete: (id: string) => ipcRenderer.invoke(`${featureName}:delete`, id)
+  delete: (id: string) => ipcRenderer.invoke(`${featureName}:delete`, id),
+  bulkDelete: (ids: string[]) => ipcRenderer.invoke(`${featureName}:bulkDelete`, ids)
 })
 
 const api = {

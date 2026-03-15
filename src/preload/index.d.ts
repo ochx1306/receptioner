@@ -6,6 +6,7 @@ export interface CrudApi<T> {
   insert: (item: T) => Promise<{ success: boolean }>
   update: (item: T) => Promise<{ success: boolean }>
   delete: (id: string) => Promise<{ success: boolean }>
+  bulkDelete: (ids: string[]) => Promise<{ success: boolean }>
 }
 
 declare global {

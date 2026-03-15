@@ -4,13 +4,14 @@ import { roleColumns } from '../role-columns'
 import { RoleForm } from './RoleForm'
 
 export const RoleTable = () => {
-  const { items, deleteItem } = useCrud('roles', window.api.role)
+  const { items, deleteItem, bulkDeleteItems } = useCrud('roles', window.api.role)
 
   return (
     <CrudTable
       featureName="役職"
       items={items}
       deleteItem={deleteItem}
+      deleteItems={bulkDeleteItems}
       columns={roleColumns}
       CrudForm={RoleForm}
     />

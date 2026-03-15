@@ -42,6 +42,14 @@ export const createCrudHandlers = <T extends BaseEntity>(tableName: string) => {
       if (info.changes === 0) {
         throw new Error(`Failed to delete: Item ${id} not found in ${tableName}`)
       }
+    },
+
+    bulkDelete: (db: Database, ids: BaseId[]): void => {
+      const sql = `DELETE FROM ${tableName} WHERE id IN (${ids.map(() => '?').join(', ')})`
+      const info = db.prepare(sql).run(ids)
+      if (info.changes === 0) {
+        throw new Error(`Failed to delete: Items ${ids} not found in ${tableName}`)
+      }
     }
   }
 }
