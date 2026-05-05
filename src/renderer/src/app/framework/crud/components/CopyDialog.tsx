@@ -18,8 +18,8 @@ export const CopyDialog = <T extends BaseEntity>({
   return (
     <BaseDialog
       trigger={<CopyIconButton />}
-      title={`${originalName}のコピーを作成`}
-      description={`${originalName}のコピーを作成します。`}
+      title={`「${originalName}」のコピーを作成`}
+      description={`「${originalName}」のコピーを作成します。`}
     >
       {(onSuccess) => <CrudForm crudMode="create" defaultValues={item} onSuccess={onSuccess} />}
     </BaseDialog>
