@@ -10,16 +10,15 @@
   "compilerOptions": {
     "composite": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
     "paths": {
       "@shared/*": [
-        "src/shared/*"
+        "./src/shared/*"
       ],
       "@/*": [
-        "src/renderer/src/*"
+        "./src/renderer/src/*"
       ],
       "@app/*": [
-        "src/renderer/src/app/*"
+        "./src/renderer/src/app/*"
       ]
     }
   }

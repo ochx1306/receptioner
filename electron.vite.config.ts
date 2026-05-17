@@ -8,23 +8,23 @@ export default defineConfig({
   main: {
     resolve: {
       alias: {
-        '@shared': resolve('src/shared')
+        '@shared': resolve(__dirname, 'src/shared')
       }
     }
   },
   preload: {
     resolve: {
       alias: {
-        '@shared': resolve('src/shared')
+        '@shared': resolve(__dirname, 'src/shared')
       }
     }
   },
   renderer: {
     resolve: {
       alias: {
-        '@shared': resolve('src/shared'),
-        '@': resolve('src/renderer/src'),
-        '@app': resolve('src/renderer/src/app')
+        '@shared': resolve(__dirname, 'src/shared'),
+        '@': resolve(__dirname, 'src/renderer/src'),
+        '@app': resolve(__dirname, 'src/renderer/src/app')
       }
     },
     plugins: [
